@@ -30,6 +30,7 @@ const clientCommands = new Discord.Collection<string, any>();
 
 async function onBotReady() : Promise<void> {
 	console.log("Bot Loaded");
+	client.user?.setActivity("with your mum", { type: "PLAYING" });
 }
 
 const PROBABILITY = 0.05;
