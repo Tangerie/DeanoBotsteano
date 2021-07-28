@@ -35,7 +35,7 @@ async function onBotReady() : Promise<void> {
 }
 
 const PROBABILITY = 0.045;
-const REGEX = /.*((th(ank|x))|(deano)).*/ig;
+const REGEX = /(th(ank|x)).*/ig;
 const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it"];
 async function onMessage(msg : Message) {
 	if(!msg.author.bot) {
