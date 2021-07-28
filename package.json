@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
+    "insult-compliment": "^1.1.4",
     "node-fetch": "^2.6.1"
   }
 }

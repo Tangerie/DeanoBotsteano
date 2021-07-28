@@ -2,6 +2,7 @@ require('dotenv').config();
 
 import Discord, { Guild, Message } from 'discord.js';
 import fetch from 'node-fetch';
+const InsultCompliment = require("insult-compliment");
 
 //https://discord.com/oauth2/authorize?client_id=867672684699713557&scope=bot+applications.commands
 
@@ -33,9 +34,32 @@ async function onBotReady() : Promise<void> {
 	client.user?.setActivity("with your mum", { type: "PLAYING" });
 }
 
-const PROBABILITY = 0.05;
+const PROBABILITY = 0.045;
+const REGEX = /.*((th(ank|x))|(deano)).*/ig;
+const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it"];
 async function onMessage(msg : Message) {
 	if(!msg.author.bot) {
+		if(REGEX.test(msg.content)) {
+			const msgs = [...(await msg.channel.messages.fetch({
+				before: msg.id,
+				limit: 5
+			})).filter(x => x.embeds.length == 1 && x.author.id == client?.user?.id)
+			.filter(x => x.embeds[0].title == "That's cool but did you know?")
+			.values()];
+			if(msgs.length > 0) {
+				//thanks was given
+				msg.reply({
+					embed: {
+						title: thxTitles[Math.floor(Math.random() * thxTitles.length)],
+						description: "Here's a compliment: " + InsultCompliment.Compliment(),
+						color: 10181046
+					}
+				})
+				return;
+			}
+		}
+		
+		
 		if(Math.random() <= PROBABILITY) {
 			try {
 				const fact = await getFact();
