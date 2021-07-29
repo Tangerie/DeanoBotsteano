@@ -48,7 +48,7 @@ async function onMessage(msg : Message) {
 				before: msg.id,
 				limit: 5
 			})).filter(x => x.embeds.length == 1 && x.author.id == client?.user?.id)
-			.filter(x => x.embeds[0].title == "That's cool but did you know?")
+			.filter(x => x.embeds[0].color == 10181046)
 			.values()];
 			if(msgs.length > 0) {
 				//thanks was given
@@ -56,7 +56,7 @@ async function onMessage(msg : Message) {
 					embed: {
 						title: thxTitles[Math.floor(Math.random() * thxTitles.length)],
 						description: "Here's a compliment: " + InsultCompliment.Compliment(),
-						color: 10181046
+						color: 10181045
 					}
 				})
 				return;
@@ -74,7 +74,7 @@ async function onMessage(msg : Message) {
 						title: summTitles[Math.floor(Math.random() * summTitles.length)],
 						description: fact,
 						color: 10181046
-					}
+					},
 				})
 				return;
 			} catch(err) {
