@@ -35,7 +35,7 @@ async function onBotReady() : Promise<void> {
 }
 
 const PROBABILITY = 0.045;
-const summon_mult = 5;
+const summon_mult = 10;
 const REGEX = /(th(ank|x)).*/ig;
 const summon_reg = /.*(deano).*/ig;
 const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it", "Always happy to help", "I'm glad I could enlighten you mortals"];
