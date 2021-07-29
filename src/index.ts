@@ -35,11 +35,15 @@ async function onBotReady() : Promise<void> {
 }
 
 const PROBABILITY = 0.045;
+const summon_mult = 5;
 const REGEX = /(th(ank|x)).*/ig;
-const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it"];
+const summon_reg = /.*(deano).*/ig;
+const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it", "Always happy to help", "I'm glad I could enlighten you mortals"];
+const summTitles = ["I was called", "Did one of you mortals summon me?", "I am not one to be summoned but...", "I heard my name", "Were you speaking of me?", "Why have you called me here?", "Are you seeking enlightenment?"];
 async function onMessage(msg : Message) {
 	if(!msg.author.bot) {
 		if(REGEX.test(msg.content)) {
+			console.log("Thanks");
 			const msgs = [...(await msg.channel.messages.fetch({
 				before: msg.id,
 				limit: 5
@@ -58,9 +62,30 @@ async function onMessage(msg : Message) {
 				return;
 			}
 		}
+
+		if(summon_reg.test(msg.content) && Math.random() <= PROBABILITY * summon_mult) {
+			console.log("Summoned");
+			try {
+				const fact = await getFact();
+				//const trans = await translateText(fact);
+				if(fact == "") return;
+				msg.reply({
+					embed: {
+						title: summTitles[Math.floor(Math.random() * summTitles.length)],
+						description: fact,
+						color: 10181046
+					}
+				})
+				return;
+			} catch(err) {
+				console.error(err);
+			}
+			
+		}
 		
 		
 		if(Math.random() <= PROBABILITY) {
+			console.log("Random");
 			try {
 				const fact = await getFact();
 				//const trans = await translateText(fact);
