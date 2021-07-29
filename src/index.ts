@@ -62,8 +62,9 @@ async function onMessage(msg : Message) {
 				return;
 			}
 		}
+		const rnd = Math.random();
 
-		if(summon_reg.test(msg.content) && Math.random() <= PROBABILITY * summon_mult) {
+		if((summon_reg.test(msg.content) && rnd <= PROBABILITY * summon_mult) || msg.mentions.members?.has(client?.user?.id ?? "")) {
 			console.log("Summoned");
 			try {
 				const fact = await getFact();
@@ -80,11 +81,9 @@ async function onMessage(msg : Message) {
 			} catch(err) {
 				console.error(err);
 			}
-			
 		}
 		
-		
-		if(Math.random() <= PROBABILITY) {
+		if(rnd <= PROBABILITY) {
 			console.log("Random");
 			try {
 				const fact = await getFact();
