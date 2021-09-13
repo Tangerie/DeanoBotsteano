@@ -34,8 +34,8 @@ async function onBotReady() : Promise<void> {
 	client.user?.setActivity("with your mum", { type: "PLAYING" });
 }
 
-const PROBABILITY = 0.045;
-const summon_mult = 10;
+const PROBABILITY = 0.015;
+const summon_mult = 3;
 const REGEX = /(th(ank|x)).*/ig;
 const summon_reg = /.*(deano).*/ig;
 const thxTitles = ["Your welcome", "I appreciate that you appreciate it", "Im glad you liked it", "Always happy to help", "I'm glad I could enlighten you mortals"];
